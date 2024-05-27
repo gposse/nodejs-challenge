@@ -1,0 +1,20 @@
+version: '3'
+networks:
+  workana_network:
+    external: true
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile-node
+    environment:
+      - MYSQL_DATABASE=wkchallenge
+      - MYSQL_USER=wkchallenge
+      - MYSQL_PASSWORD=wkchallenge
+      - MYSQL_HOST=db
+    image: workana_app
+    ports: 
+      - "3000:3000"
+    networks:
+      - workana_network
